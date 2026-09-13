@@ -1,27 +1,63 @@
+[build-system]
+requires = ["hatchling >= 1.27, <2"]
+build-backend = "hatchling.build"
+
+
 [project]
-name = "markdown_images_migration"
-version = "1.0.0"
+name = "markdown-images-migration"
+description = "Project does image migration to specified cloud service for a markdown file"
 authors = [
   { name="Julia Bespechnaya", email="julia.bespechnaya@gmail.com" },
 ]
-description = ""
-readme = "README.md"
+
+dynamic = ["version"]
+
 requires-python = ">=3.9"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
+
+dependencies = [
+    "requests>=2.28",
 ]
+
+readme = "README.md"
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
+keywords = ["markdown", "image migration", "cloud service", "ImgBB"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+    "Intended Audience :: Developers",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/julia-bespechnaya/markdown-images-migration"
+"Issue Tracker" = "https://github.com/julia-bespechnaya/markdown-images-migration/issues"
 
 
-[build-system]
-requires = ["hatchling >= 1.26"]
-build-backend = "hatchling.build"
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
-[tools.setuptools]
-packages = ["src/markdown_images_migration"]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+ignore_errors = true
